@@ -1,0 +1,88 @@
+import bcrypt from "bcryptjs";
+
+const Data = {
+  users: [
+    {
+      name: "behnam",
+      email: "behnam74gh@yahoo.com",
+      password: bcrypt.hashSync("1374mehr1", 8),
+      isAdmin: true,
+    },
+    {
+      name: "mehrdad",
+      email: "mehrdad74q@yahoo.com",
+      password: bcrypt.hashSync("1374shahrivar30", 8),
+      isAdmin: false,
+    },
+  ],
+  products: [
+    {
+      name: "Slim Shirt",
+      category: "Shirts",
+      image: "/images/d1.jpg",
+      price: 60,
+      countInStock: 20,
+      brand: " Nike",
+      rating: 3.5,
+      numReviews: 10,
+      description: "high quality product",
+    },
+    {
+      name: "gourgues Pants",
+      category: "Pants",
+      image: "/images/p1.jpg",
+      price: 70,
+      countInStock: 0,
+      brand: " Nike",
+      rating: 1.6,
+      numReviews: 8,
+      description: "a grate product!",
+    },
+    {
+      name: "Fit Shirt",
+      category: "Shirts",
+      image: "/images/d3.jpg",
+      price: 50,
+      countInStock: 15,
+      brand: " Nike",
+      rating: 4.2,
+      numReviews: 5,
+      description: "high quality product",
+    },
+    {
+      name: "Best Pants",
+      category: "Pants",
+      image: "/images/p2.jpg",
+      price: 70,
+      countInStock: 30,
+      brand: " Nike",
+      rating: 4.5,
+      numReviews: 8,
+      description: "a grate product!",
+    },
+    {
+      name: "pretty Shirt",
+      category: "Shirts",
+      image: "/images/d2.jpg",
+      price: 50,
+      countInStock: 0,
+      brand: " Nike",
+      rating: 3.2,
+      numReviews: 5,
+      description: "high quality product",
+    },
+    {
+      name: "good Pants",
+      category: "Pants",
+      image: "/images/p3.jpg",
+      price: 70,
+      countInStock: 10,
+      brand: " Nike",
+      rating: 2.5,
+      numReviews: 8,
+      description: "a grate product!",
+    },
+  ],
+};
+
+export default Data;
