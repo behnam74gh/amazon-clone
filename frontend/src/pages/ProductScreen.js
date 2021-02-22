@@ -1,13 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import axios from "../../node_modules/axios/index";
 
 import { detailsProduct } from "../actions/productActions";
+import Comments from "../components/comments/Comments";
 import LoadingBox from "../components/LoadingBox";
 import MessageBox from "../components/MessageBox";
 import Rating from "../components/Rating";
 
 const ProductScreen = (props) => {
+  const [commentList, setCommentList] = useState([]);
+
   const dispatch = useDispatch();
   const productId = props.match.params.id;
   const [qty, setQty] = useState(1);
@@ -20,6 +24,23 @@ const ProductScreen = (props) => {
 
   const addToCartHandler = () => {
     props.history.push(`/cart/${productId}?qty=${qty}`);
+  };
+
+  useEffect(() => {
+    axios
+      .post("/api/comment/getComments", { postId: productId })
+      .then((res) => {
+        // console.log(res.data);
+        if (res.data.success) {
+          setCommentList(res.data.allComments);
+        } else {
+          console.log(res.data.error);
+          alert("faild to load comments");
+        }
+      });
+  }, [productId]);
+  const updateComments = (savedComment) => {
+    setCommentList(commentList.concat(savedComment));
   };
 
   return (
@@ -108,6 +129,21 @@ const ProductScreen = (props) => {
           </div>
         </div>
       )}
+      <div className="row">
+        <div className="col-1">
+          <p>tabliqat-1</p>
+        </div>
+        <div className="col-2">
+          <Comments
+            commentList={commentList}
+            postId={productId}
+            refreshComments={updateComments}
+          />
+        </div>
+        <div className="col-1">
+          <p>tabliqat-2</p>
+        </div>
+      </div>
     </div>
   );
 };

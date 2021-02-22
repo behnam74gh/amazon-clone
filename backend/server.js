@@ -1,9 +1,13 @@
 import express from "express";
 import mongoose from "mongoose";
+import dotenv from "dotenv";
+
+import OrderRouter from "./routers/orderRouter.js";
 import productRouter from "./routers/productRouter.js";
 import userRouter from "./routers/userRouter.js";
-import dotenv from "dotenv";
-import OrderRouter from "./routers/orderRouter.js";
+import commentRouter from "./routers/commentRouter.js";
+import likeRouter from "./routers/likeRouter.js";
+import dislikeRouter from "./routers/dislikeRouter.js";
 
 //this block of code is necessery to can use from the content in the .env fail.. please, if you use from 'Git'! add it to .gitignore ==> because, it must be hidden for other people
 dotenv.config();
@@ -25,6 +29,9 @@ mongoose.connect(process.env.MONGODB_URL || "mongodb://localhost/amazona", {
 app.use("/api/users", userRouter);
 app.use("/api/products", productRouter);
 app.use("/api/orders", OrderRouter);
+app.use("/api/comment", commentRouter);
+app.use("/api/like", likeRouter);
+app.use("/api/dislike", dislikeRouter);
 //use method is for access to expressRoutes
 
 //home route for server

@@ -43,7 +43,7 @@ const App = () => {
                 <span className="badge">{cartItems.length}</span>
               )}
             </Link>
-            {userInfo ? (
+            {userInfo.isAdmin === "false" ? (
               <div className="dropdown">
                 <Link to="#">
                   {userInfo.name} <i className="fas fa-caret-down"></i>
@@ -65,7 +65,7 @@ const App = () => {
             ) : (
               <Link to="/signin">Sign In</Link>
             )}
-            {userInfo && userInfo.isAdmin && (
+            {userInfo.isAdmin === "true" && (
               <div className="dropdown">
                 <Link to="#admin">
                   Admin <i className="fas fa-caret-down"></i>
